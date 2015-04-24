@@ -1,0 +1,19 @@
+{
+  "name": "WarCluster-AI",
+  "version": "1.0.0",
+  "description": "hackathon made AI for http://warcluster.com",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lepovica/WarCluster-AI.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lepovica/WarCluster-AI/issues"
+  },
+  "homepage": "http://warcluster.com"
+}
