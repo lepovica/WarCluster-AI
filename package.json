@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/lepovica/WarCluster-AI/issues"
   },
-  "homepage": "http://warcluster.com"
+  "homepage": "http://warcluster.com",
+  "dependencies": {
+    "ws": "0.7.1"
+  }
 }
