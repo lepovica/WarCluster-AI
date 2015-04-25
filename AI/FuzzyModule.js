@@ -25,15 +25,25 @@ module.exports = function() {
 			var flv = core._varMap[nameOfFLV];
 			flv.fuzzify(crispValue);
 		},
-		deFuzzify : function(nameOfFLV, deFuzzifyMethod) {
+		deFuzzify : function(nameOfFLV) {
+			var confidenceMap = {};
+			var flv = core._varMap[nameOfFLV];
 
-		},
-		_inference : function() {
 			var rules = core._fuzzyRules;
 			for(var i = 0; i < rules.length; i++) {
 				rules[i]._con.calculate();
 			}
-			
+			for(key in flv._memberSet) {
+				for(var j = 0; j < rules.length; j++) {
+					if(rules[j]._con.getName === key) {
+						if ( flv._memberSet[key].getDOM() > rules[j]._con.getDOM()) {
+							flv._memberSet[key].setDOM(rules[j]._con.getDOM());
+						}
+						confidenceMap.[key] = flv._memberSet[key].getDOM()
+					}
+				}
+			}
+			return flv.deFuzzify(confidenceMap);
 		}
 	}
 	return core;

@@ -1,5 +1,6 @@
-module.exports = function(name, leftOffset, peakPoint, rightOffset) {
+module.exports = function(name, repValue,  leftOffset, peakPoint, rightOffset) {
 	var core = {
+		_repValue : peakPoint, // TODO : should check this !!!
 		_name : name,
 		_DOM : 0.0,	
 		_peakPoint : peakPoint,
@@ -23,6 +24,11 @@ module.exports = function(name, leftOffset, peakPoint, rightOffset) {
 		},
 		getName : function() {
 			return core._name;
+		},
+		ORwithDOM : function(value) {
+			if(core._DOM < value) {
+				core.setDOM(value);
+			}
 		}
 	}
 	return core;

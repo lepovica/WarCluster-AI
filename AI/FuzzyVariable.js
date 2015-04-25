@@ -35,12 +35,23 @@ module.exports = function(name) {
 			core._memberSets[setName] = newSet;
 			core.adjustRanges(leftBound, rightBound);
 			return newSet;
-		}
+		},
 		fuzzify: function(value) {
 			for(key in core._memberSets) {
 				core._memberSets[key].setDOM(core._memberSets[key].calculateDOM(value));
 			}
+		},
+		deFuzzify : function(confidenceMap) {
+			var sumOfConfidenceMultiplyRepValue = 0.0;
+			var sumOfConfidence = 0.0;
+			for(key in core._memberSets) {
+				var confidence = confidenceMap[key].getDOM();
+				var repValue = core._memberSets[key]._repValue;
+				sumOfConfidenceMultiplyRepValue += confidence*repValue;
+				sumOfConfidence += repValue;
+			}
+			var crispValue = sumOfConfidenceMultiplyRepValue / sumOfConfidence;
+			return crispValue;
 		}
-	}
 	return core;
 }
