@@ -10,7 +10,7 @@ module.exports = function(antecedent, consequent) {
 		setConfidenceOfConsequentToZero : function() {
 			core._con.clearDOM();
 		},
-		calculate() {
+		calculate: function() {
 			core._con.ORwithDOM(core._ant.getDOM());
 		}
 	}
