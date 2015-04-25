@@ -1,5 +1,6 @@
-function FuzzyLeftShoulderSet(leftOffset, peakPoint, rightOffset) {
-	return {
+module.exports = function (leftOffset, peakPoint, rightOffset) {
+	var core = {
+		_DOM : 0.0,
 		_peakPoint : peakPoint,
 		_leftOffset : leftOffset,
 		_rightOffset : rightOffset,
@@ -17,6 +18,16 @@ function FuzzyLeftShoulderSet(leftOffset, peakPoint, rightOffset) {
 					return 0.0;
 				}
 			}
+		},
+		clearDOM : function() {
+			core._DOM = 0.0;
+		},
+		setDOM : function(value) {
+			core._DOM = value;
+		},
+		getDOM : function(value) {
+			return core._DOM;
 		}
 	}
+	return core;
 }
