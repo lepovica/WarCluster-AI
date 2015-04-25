@@ -1,9 +1,11 @@
 var WebSocket = require("ws");
+var request = require("request");
 var PlayerData = require("./PlayerData.js");
+var ok = require("okay")
 
-module.exports = function(url){
-  this.url = url;
+module.exports = function(config){
   this.context = {};
+  this.config = config;
 }
 
 module.exports.prototype.prepare = function(username, twitterId, tokens) {
@@ -19,15 +21,17 @@ module.exports.prototype.prepare = function(username, twitterId, tokens) {
     "AccessToken": tokens.oauthAccessToken,
     "AccessTokenSecret": tokens.oauthAccessTokenSecret
   };
-  // console.log(this.url)
-  // console.log(msg)
-  this.ws = new WebSocket(this.url);
+  this.getEmperor(ok(console.error.bind(console), function(data) {
+    var emperor = JSON.parse(data)[0];
+  }));
+
+  this.ws = new WebSocket(this.config.socketUrl);
   this.ws.on("open", function() {
     console.log("websocket open")
     self.ws.send(JSON.stringify(msg));
   });
   this.ws.on("message", function(message) {
-    console.log("websocket  message", message)
+    // console.log("websocket  message", message)
     self.parseMessage(message);
   });
 }
@@ -124,16 +128,16 @@ module.exports.prototype.setupParameters = function(race, sun) {
   '}')
 }
 
-module.exports.prototype.changeSubscriptions = function(objects) {
-  // console.log("changeSubscriptions", JSON.stringify(objects, null, '\t'))
-  // this.ws.send('{' +
-  //   '"Command": "change_subscriptions",' +
-  //   '"Objects": ' + JSON.stringify(objects) +
-  // '}')
+module.exports.prototype.getRaces = function (done) {
+  // + "/players/?page=" + page
+      // url: self.config.ajaxUrl + "/races/",
 }
 
-module.exports.prototype.unsubscribeAll = function() {
-  // this.ws.send('{' +
-  //   '"Command": "unsubscribeAll"' +
-  // '}')
+module.exports.prototype.getEmperor = function(done) {
+  // + "/players/?page=" + page
+  //     url: self.config.ajaxUrl + "/races/",
+  // console.log(this.config.ajaxUrl + "/players/?page=1")
+  request.get(this.config.ajaxUrl + "/players/?page=1", ok(done, function(response, body) {
+    done(null, body)
+  }))
 }
