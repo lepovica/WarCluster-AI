@@ -11,6 +11,6 @@ if (process.env.CELL_MODE == "development") {
 } else if (process.env.CELL_MODE == "hackfmi") {
   config = require("./config/hackfmi.js")
 }
-console.log(config.socketUrl)
+
 var wai = new wai(config.socketUrl);
 wai.prepare("warclusterai", "3202036540" , tokens)
