@@ -8,7 +8,7 @@ module.exports = function(url){
 
 module.exports.prototype.prepare = function(username, twitterId, tokens) {
   var self = this;
-  debugger;
+  
   this.username = username;
   this.twitterId = twitterId;
 
