@@ -17,6 +17,8 @@
   },
   "homepage": "http://warcluster.com",
   "dependencies": {
+    "okay": "1.0.0",
+    "request": "2.55.0",
     "ws": "0.7.1"
   }
 }
