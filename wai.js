@@ -19,14 +19,16 @@ module.exports.prototype.prepare = function(username, twitterId, tokens) {
     "AccessToken": tokens.oauthAccessToken,
     "AccessTokenSecret": tokens.oauthAccessTokenSecret
   };
-
+  // console.log(this.url)
+  // console.log(msg)
   this.ws = new WebSocket(this.url);
-  this.ws.on("open", function(msg) {
-    // console.log("websocket open")
-    self.parseMessage(msg.data);
-  });
-  this.ws.on("message", function(e) {
+  this.ws.on("open", function() {
+    console.log("websocket open")
     self.ws.send(JSON.stringify(msg));
+  });
+  this.ws.on("message", function(message) {
+    console.log("websocket  message", message)
+    self.parseMessage(message);
   });
 }
 
@@ -48,19 +50,26 @@ module.exports.prototype.parseMessage = function(command) {
         // some fuzzy module decision making passing playerData
       break;
       case "scope_of_view_result":
+        console.log("scope_of_view_result")
+
         // some fuzzy module decision making
       break;
       case "state_change":
+        console.log("state_change")
         // some fuzzy module decision making
       break;
       case "request_setup_params":
-        this.requestSetupParameters();
+        console.log("request_setup_params")
+        // decide
+        this.setupParameters(5, 0);
       break;
       case "send_missions":
+        console.log("send_missions")
         // console.log("send_missions:", data)
         // some fuzzy module decision making
       break;
       case "send_mission_failed":
+        console.log("send_mission_failed")
         // some fuzzy module decision making
       break;
       case "server_params":
@@ -71,6 +80,7 @@ module.exports.prototype.parseMessage = function(command) {
           Races: data.Races,
           ShipsDeathModifier: data.ShipsDeathModifier
         }
+        this.scopeOfView(0, 0, 145907, 145907)
         break;
       case "error":
           console.error(data.Message)
@@ -79,7 +89,7 @@ module.exports.prototype.parseMessage = function(command) {
         console.log("Wai has lost a planet ;C")
       break;
       default:
-        console.log(data);
+        console.log("default", data);
     }
   }
 }
