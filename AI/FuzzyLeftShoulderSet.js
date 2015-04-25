@@ -1,5 +1,7 @@
-module.exports = function (leftOffset, peakPoint, rightOffset) {
+module.exports = function (name, repValue,  leftOffset, peakPoint, rightOffset) {
 	var core = {
+		_repValue : (((peakPoint - leftOffset) + peakPoint) / 2), // TODO : should check this
+		_name : name,
 		_DOM : 0.0,
 		_peakPoint : peakPoint,
 		_leftOffset : leftOffset,
@@ -27,6 +29,9 @@ module.exports = function (leftOffset, peakPoint, rightOffset) {
 		},
 		getDOM : function(value) {
 			return core._DOM;
+		},
+		getName : function() {
+			return core._name;
 		}
 	}
 	return core;

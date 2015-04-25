@@ -1,5 +1,6 @@
-module.exports = function (name, leftOffset, peakPoint, rightOffset) {
+module.exports = function (name, repValue, leftOffset, peakPoint, rightOffset) {
 	var core =  {
+		_repValue: (((peakPoint + rightOffset) + peakPoint) / 2),
 		_name : name,
 		_DOM : 0.0,
 		_peakPoint : peakPoint,
