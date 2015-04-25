@@ -27,4 +27,4 @@ build/Release
 node_modules
 
 # Twitter tokens
-tokens
+tokens.js
