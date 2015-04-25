@@ -1,19 +1,19 @@
-function TriangleFuzzySet(leftPoint, peakPoint, rightPoint) {
+function TriangleFuzzySet(leftOffset, peakPoint, rightOffset) {
 	return {
 		_peakPoint : peakPoint,
-		_leftPoint : leftPoint,
-		_rightPoint : rightPoint,
+		_leftOffset : leftOffset,
+		_rightOffset : rightOffset,
 		calculateDOM : function(value) {
-					if( ((rightPoint === 0.0) && (peakPoint === value)) || ((leftPoint === 0.0) && (peakPoint === value)) ) {
+					if( ((rightOffset === 0.0) && (peakPoint === value)) || ((leftOffset === 0.0) && (peakPoint === value)) ) {
 						return 1.0;
 					}
-					if( (value <= peakPoint) && (value >= (peakPoint - leftPoint)) ){
-						var grad = 1.0 / leftPoint;
-						return grad * (value - (peakPoint - leftPoint));
+					if( (value <= peakPoint) && (value >= (peakPoint - leftOffset)) ){
+						var grad = 1.0 / leftOffset;
+						return grad * (value - (peakPoint - leftOffset));
 							
 					}else {
-						if( (value > peakPoint) && (value < (peakPoint + rightPoint))) {
-							var grad = 1.0 / -rightPoint;
+						if( (value > peakPoint) && (value < (peakPoint + rightOffset))) {
+							var grad = 1.0 / -rightOffset;
 							return grad * (value - peakPoint) + 1.0;
 						}else {
 							return 0.0;
