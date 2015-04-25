@@ -1,5 +1,14 @@
+var config;
 var wai = require("./wai");
 var tokens = require("./tokens.js");
-var config = require("./config.js");
 
-wai.prepare();
+process.env.CELL_MODE = process.env.NODE_ENV || process.env.CELL_MODE || "development";
+
+if (process.env.CELL_MODE = "development") {
+  config = require("./config/development.js");
+} else (process.env.CELL_MODE = "staging") {
+  config = require("./config/staging.js");
+}
+
+
+var wai = new wai(config.socketUrl);
