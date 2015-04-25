@@ -27,6 +27,13 @@ module.exports = function() {
 		},
 		deFuzzify : function(nameOfFLV, deFuzzifyMethod) {
 
+		},
+		_inference : function() {
+			var rules = core._fuzzyRules;
+			for(var i = 0; i < rules.length; i++) {
+				rules[i]._con.calculate();
+			}
+			
 		}
 	}
 	return core;
