@@ -1,4 +1,4 @@
-function TriangleFuzzySet(leftOffset, peakPoint, rightOffset) {
+function FuzzyTriangleSet(leftOffset, peakPoint, rightOffset) {
 	return {
 		_peakPoint : peakPoint,
 		_leftOffset : leftOffset,
