@@ -48,30 +48,30 @@ module.exports.prototype.parseMessage = function(command) {
         pd.Race = data.RaceID;
         pd.HomePlanet = data.HomePlanet;
         // some fuzzy module decision making passing playerData
-      break;
+          break;
       case "scope_of_view_result":
         console.log("scope_of_view_result")
 
         // some fuzzy module decision making
-      break;
+        break;
       case "state_change":
         console.log("state_change")
         // some fuzzy module decision making
-      break;
+        break;
       case "request_setup_params":
         console.log("request_setup_params")
         // decide
         this.setupParameters(5, 0);
-      break;
+        break;
       case "send_missions":
         console.log("send_missions")
         // console.log("send_missions:", data)
         // some fuzzy module decision making
-      break;
+        break;
       case "send_mission_failed":
         console.log("send_mission_failed")
         // some fuzzy module decision making
-      break;
+        break;
       case "server_params":
         console.log("Wai should understand server_params")
         this.context.serverParams = {
@@ -83,11 +83,11 @@ module.exports.prototype.parseMessage = function(command) {
         this.scopeOfView(0, 0, 145907, 145907)
         break;
       case "error":
-          console.error(data.Message)
+        console.error(data.Message)
         break;
       case "owner_change":
         console.log("Wai has lost a planet ;C")
-      break;
+        break;
       default:
         console.log("default", data);
     }
