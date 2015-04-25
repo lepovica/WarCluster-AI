@@ -16,7 +16,8 @@ module.exports.prototype.prepare = function(username, twitterId, tokens) {
 
   this.username = username;
   this.twitterId = twitterId;
-
+  this.cortex = new cortex();
+  console.log("Cortext", this.cortex)
   var msg = {
     "Command": "login",
     "Username": username,
@@ -26,13 +27,14 @@ module.exports.prototype.prepare = function(username, twitterId, tokens) {
   };
   this.getEmperor(ok(console.error.bind(console), function(data) {
     var emperor = JSON.parse(data)[0];
-    this.cortex.rememberEmperor(emperor);
+    console.log(self.cortex)
+    // this.cortex.rememberEmperor(emperor);
   }));
 
   this.getLeaderboardRaces(ok(console.error.bind(console), function(data) {
     var races = JSON.parse(data);
   }));
-
+  console.log("config", this.config)
   this.ws = new WebSocket(this.config.socketUrl);
   this.ws.on("open", function() {
     console.log("websocket open")
@@ -42,6 +44,9 @@ module.exports.prototype.prepare = function(username, twitterId, tokens) {
     // console.log("websocket  message", message)
     self.parseMessage(message);
   });
+  this.ws.on("error", function(err){
+    console.error(arguments)
+  })
 }
 
 module.exports.prototype.parseMessage = function(command) {

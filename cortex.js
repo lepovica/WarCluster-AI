@@ -9,11 +9,13 @@ module.exports = function(){
 
 
 module.exports.prototype.parseView = function(data) {
+  var self = this;
   Object.keys(data.Planets).forEach(function (planet) {
-    if (planet.Owner == this.emperor) {
-      this.emperorPlanets.push(planet)
+    if (planet.Owner == self.emperor) {
+      self.emperorPlanets.push(planet)
     }
   })
+  console.log(this.emperorPlanets)
 }
 
 module.exports.prototype.rememberEmperor = function(emperor) {
