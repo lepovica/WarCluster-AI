@@ -26,6 +26,7 @@ module.exports.prototype.prepare = function(username, twitterId, tokens) {
   };
   this.getEmperor(ok(console.error.bind(console), function(data) {
     var emperor = JSON.parse(data)[0];
+    this.cortex.rememberEmperor(emperor);
   }));
 
   this.getLeaderboardRaces(ok(console.error.bind(console), function(data) {
