@@ -8,7 +8,7 @@ module.exports = function(url){
 
 module.exports.prototype.prepare = function(username, twitterId, tokens) {
   var self = this;
-  
+
   this.username = username;
   this.twitterId = twitterId;
 
@@ -22,6 +22,7 @@ module.exports.prototype.prepare = function(username, twitterId, tokens) {
 
   this.ws = new WebSocket(this.url);
   this.ws.on("open", function(msg) {
+    // console.log("webscoket open")
     self.parseMessage(msg.data);
   });
   this.ws.on("message", function(e) {
