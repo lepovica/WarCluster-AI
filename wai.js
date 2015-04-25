@@ -1,5 +1,8 @@
+'use strict'
+
 var WebSocket = require("ws");
 var PlayerData = require("./PlayerData.js");
+var cortex = require("./cortex.js");
 
 module.exports = function(url){
   this.url = url;
@@ -51,7 +54,7 @@ module.exports.prototype.parseMessage = function(command) {
           break;
       case "scope_of_view_result":
         console.log("scope_of_view_result")
-
+        this.cortex.parseView(data)
         // some fuzzy module decision making
         break;
       case "state_change":

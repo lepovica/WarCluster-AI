@@ -4,11 +4,15 @@ function Planet(id, ships, capacity, x, y, size) {
 	this.capacity = capacity;
 	this.x = x;
 	this.y = y;
-	this.size = size; 
+	this.size = size;
 };
 
 Planet.prototype.distance = function (otherPlanet) {
 	return Math.sqrt( Math.pow((this.x - otherPlanet.x), 2) + Math.pow((this.y - otherPlanet.y), 2));
+}
+
+Planet.prototype.timeToTravel = function (otherPlanet) {
+  return
 }
 
 module.exports = Planet;
