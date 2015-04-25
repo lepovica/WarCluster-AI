@@ -25,6 +25,10 @@ module.exports.prototype.prepare = function(username, twitterId, tokens) {
     var emperor = JSON.parse(data)[0];
   }));
 
+  this.getLeaderboardRaces(ok(console.error.bind(console), function(data) {
+    var races = JSON.parse(data);
+  }));
+
   this.ws = new WebSocket(this.config.socketUrl);
   this.ws.on("open", function() {
     console.log("websocket open")
@@ -128,15 +132,13 @@ module.exports.prototype.setupParameters = function(race, sun) {
   '}')
 }
 
-module.exports.prototype.getRaces = function (done) {
-  // + "/players/?page=" + page
-      // url: self.config.ajaxUrl + "/races/",
+module.exports.prototype.getLeaderboardRaces = function (done) {
+  request.get(this.config.ajaxUrl + "/races/", ok(done, function(response, body) {
+    done(null, body)
+  }))
 }
 
 module.exports.prototype.getEmperor = function(done) {
-  // + "/players/?page=" + page
-  //     url: self.config.ajaxUrl + "/races/",
-  // console.log(this.config.ajaxUrl + "/players/?page=1")
   request.get(this.config.ajaxUrl + "/players/?page=1", ok(done, function(response, body) {
     done(null, body)
   }))
