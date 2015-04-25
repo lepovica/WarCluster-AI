@@ -21,13 +21,13 @@ module.exports.prototype.prepare = function(username, twitterId, tokens) {
   };
 
   this.ws = new WebSocket(this.url);
-  this.ws.on("open", function(msg) {
-    // console.log("webscoket open")
-    self.parseMessage(msg.data);
-  });
-  this.ws.on("message", function(e) {
-    self.ws.send(JSON.stringify(msg));
-  });
+  // this.ws.on("open", function(msg) {
+  //   // console.log("websocket open")
+  //   self.parseMessage(msg.data);
+  // });
+  // this.ws.on("message", function(e) {
+  //   self.ws.send(JSON.stringify(msg));
+  // });
 }
 
 module.exports.prototype.parseMessage = function(command) {
