@@ -19,17 +19,23 @@ module.exports = function(name) {
 			return newSet;
 		},
 		addLeftShoulderSet : function(setName, leftBound, peakPoint, rightBound){
-			var newSet = FuzzyLeftShoulderSet(peakPoint - leftBound, peakPoint, peakPoint + rightBound);
+			var newSet = FuzzyLeftShoulderSet(setName, peakPoint - leftBound, peakPoint, peakPoint + rightBound);
 			core._memberSets[setName] = newSet;
 			core.adjustRanges(leftBound, rightBound);
 			return newSet;
 		},
 		addRightShoulderSet : function(setName, leftBound, peakPoint, rightBound) {
-			var newSet = FuzzyRightShoulderSet(peakPoint - leftBound, peakPoint, peakPoint + rightBound);
+			var newSet = FuzzyRightShoulderSet(setName, peakPoint - leftBound, peakPoint, peakPoint + rightBound);
 			core._memberSets[setName] = newSet;
 			core.adjustRanges(leftBound, rightBound);
 			return newSet;
 		},
+		addRectangularSet : function(setName, leftBound, peakPoint, rightBound) {
+			var newSet = FuzzyRectangularSet(setName, peakPoint - leftBound, peakPoint, peakPoint + rightBound);
+			core._memberSets[setName] = newSet;
+			core.adjustRanges(leftBound, rightBound);
+			return newSet;
+		}
 		fuzzify: function(value) {
 			for(key in core._memberSets) {
 				core._memberSets[key].setDOM(core._memberSets[key].calculateDOM(value));
