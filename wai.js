@@ -65,12 +65,15 @@ module.exports.prototype.parseMessage = function(command) {
         pd.Race = data.RaceID;
         pd.HomePlanet = data.HomePlanet;
         this.cortex.setPlayerData(pd)
+        this.scopeOfView(0, 0, 145907, 145907)
+
         // some fuzzy module decision making passing playerData
           break;
       case "scope_of_view_result":
         console.log("scope_of_view_result")
         this.cortex.parseView(data)
         // some fuzzy module decision making
+
         break;
       case "state_change":
         console.log("state_change")
@@ -80,6 +83,8 @@ module.exports.prototype.parseMessage = function(command) {
         console.log("request_setup_params")
         // decide
         this.setupParameters(5, 0);
+
+
         break;
       case "send_missions":
         console.log("send_missions")
@@ -98,7 +103,6 @@ module.exports.prototype.parseMessage = function(command) {
           Races: data.Races,
           ShipsDeathModifier: data.ShipsDeathModifier
         }
-        this.scopeOfView(0, 0, 145907, 145907)
         break;
       case "error":
         console.error(data.Message)

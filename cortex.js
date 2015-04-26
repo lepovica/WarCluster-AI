@@ -1,5 +1,4 @@
 var attackModule = require('./attackModule');
-var wai = require('./wai')
 
 module.exports = function(wai){
   var self = this;
