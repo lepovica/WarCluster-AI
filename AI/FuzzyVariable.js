@@ -13,25 +13,25 @@ module.exports = function(name) {
 			if ( right < core._maxRange) {core._maxRange = right};
 		},
 		addTriangleSet: function(setName, leftBound, peakPoint, rightBound) {
-			var newSet = FuzzyTriangleSet(setName, peakPoint - leftBound, peakPoint, peakPoint + rightBound);
+			var newSet = FuzzyTriangleSet(setName, peakPoint - leftBound, peakPoint, rightBound - peakPoint);
 			core._memberSets[setName] = newSet;
 			core.adjustRanges(leftBound, rightBound);
 			return newSet;
 		},
 		addLeftShoulderSet : function(setName, leftBound, peakPoint, rightBound){
-			var newSet = FuzzyLeftShoulderSet(setName, peakPoint - leftBound, peakPoint, peakPoint + rightBound);
+			var newSet = FuzzyLeftShoulderSet(setName, peakPoint - leftBound, peakPoint, rightBound - peakPoint);
 			core._memberSets[setName] = newSet;
 			core.adjustRanges(leftBound, rightBound);
 			return newSet;
 		},
 		addRightShoulderSet : function(setName, leftBound, peakPoint, rightBound) {
-			var newSet = FuzzyRightShoulderSet(setName, peakPoint - leftBound, peakPoint, peakPoint + rightBound);
+			var newSet = FuzzyRightShoulderSet(setName, peakPoint - leftBound, peakPoint, rightBound - peakPoint);
 			core._memberSets[setName] = newSet;
 			core.adjustRanges(leftBound, rightBound);
 			return newSet;
 		},
 		addRectangularSet : function(setName, leftBound, peakPoint, rightBound) {
-			var newSet = FuzzyRectangularSet(setName, peakPoint - leftBound, peakPoint, peakPoint + rightBound);
+			var newSet = FuzzyRectangularSet(setName, peakPoint - leftBound, peakPoint, rightBound - peakPoint);
 			core._memberSets[setName] = newSet;
 			core.adjustRanges(leftBound, rightBound);
 			return newSet;
@@ -47,8 +47,10 @@ module.exports = function(name) {
 			for(key in core._memberSets) {
 				var confidence = confidenceMap[key];
 				var repValue = core._memberSets[key]._repValue;
+				console.log("confidence : ", confidence);
+				console.log("repValue : ", repValue);
 				sumOfConfidenceMultiplyRepValue += confidence*repValue;
-				sumOfConfidence += repValue;
+				sumOfConfidence += confidence;
 			}
 			var crispValue = sumOfConfidenceMultiplyRepValue / sumOfConfidence;
 			return crispValue;
