@@ -13,7 +13,7 @@ module.exports = function(name) {
 			if ( right < core._maxRange) {core._maxRange = right};
 		},
 		addTriangleSet: function(setName, leftBound, peakPoint, rightBound) {
-			var newSet = FuzzyTriangleSet(peakPoint - leftBound, peakPoint, peakPoint + rightBound);
+			var newSet = FuzzyTriangleSet(setName, peakPoint - leftBound, peakPoint, peakPoint + rightBound);
 			core._memberSets[setName] = newSet;
 			core.adjustRanges(leftBound, rightBound);
 			return newSet;

@@ -52,8 +52,6 @@ module.exports = function() {
 					}
 				}
 			}
-			console.log("confidenceMap -------", confidenceMap)
-
 			return flv.deFuzzify(confidenceMap);
 		}
 	}
