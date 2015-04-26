@@ -5,7 +5,7 @@ module.exports = function(){
   this.users = {};
   this.suns = {};
   this.planets = {}
-  this.emperorPlanets = {};
+  this.emperorPlanets = [];
   this.emperor;
   this.waiPlanets = [];
 
@@ -22,10 +22,10 @@ module.exports.prototype.parseView = function(data) {
       var distance = Math.sqrt( Math.pow((homePlanet.Position.X - currentPlanet.Position.X), 2) + Math.pow((homePlanet.Position.Y - currentPlanet.Position.Y), 2));
       var desirability = this.attackModule.getCrispValue(parseInt(distance), data.Planets[planet].Size)/*distance, size*/
       // console.log("desirability", desirability)
-      this.emperorPlanets[planet] = {
-        desirability: desirability,
-        planet_data: data.Planets[planet]
-      }
+      this.emperorPlanets.push({
+          desirability: desirability,
+          planet_data: data.Planets[planet]
+        });
 
     }
   }
