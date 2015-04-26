@@ -34,20 +34,17 @@ module.exports.prototype.parseView = function(data) {
           desirability: desirability,
           PlanetData: data.Planets[planet]
         });
+      console.log(data.Planets[planet].Name +  "   :   " + desirability);1
     }
   }
 
 	this.allPlanets.sort(function (a, b) {
-  	if (!a.desirability) {
-  		return -1;
-  	}
-  	else if(!b.desirability) {
-  		return 1;
-  	}
-  	else {
   		return b.desirability - a.desirability;
-  	}
+
   });
+  this.allPlanets.forEach(function (elem) {
+    console.log("SORTED", elem.desirability)
+  })
 
   var attackPlanets = this.waiPlanets.map(function(elem) {
     return "planet." + elem.Name;
@@ -55,7 +52,7 @@ module.exports.prototype.parseView = function(data) {
 
   // console.log(this.allPlanets);
 
-  this.wai.sendMission("Attack", attackPlanets, "planet." + this.allPlanets[0].PlanetData.Name, 10);
+  this.wai.sendMission("Attack", attackPlanets, "planet." + this.allPlanets[1].PlanetData.Name, 10);
 
 }
 
