@@ -17,6 +17,7 @@ module.exports = function(wai){
 module.exports.prototype.parseView = function(data) {
   var self = this;
   var maxDesirability = 0.0;
+  var targetPlanet;
 
   var homePlanet = this.playerData.HomePlanet;
   for (planet in data.Planets) {
@@ -29,18 +30,14 @@ module.exports.prototype.parseView = function(data) {
       if(currentPlanet.Owner === "") {
         desirability *= 2.5
       } else if (currentPlanet.Owner === this.emperor.Username) {
-        desirability *= 1.1
+        desirability *= 1.2
       }
 
       if (maxDesirability < desirability) {
-        self.targetPlanet = currentPlanet;
+        targetPlanet = currentPlanet;
         maxDesirability = desirability;
       }
-
-      // this.allPlanets.push({
-      //     desirability: desirability,
-      //     PlanetData: data.Planets[planet]
-      //   });
+      // console.log("desirability", desirability)
       // console.log(data.Planets[planet].Name +  "   :   " + desirability);1
     }
   }
@@ -51,9 +48,9 @@ module.exports.prototype.parseView = function(data) {
     return "planet." + elem.Name;
   });
 
-  console.log(this.targetPlanet.Name + "  :  " + this.maxDesirability);
+  // console.log(targetPlanet.Name + "  :  " + maxDesirability);
 
-  this.wai.sendMission("Attack", attackPlanets, "planet." + this.targetPlanet.Name, 10);
+  this.wai.sendMission("Attack", attackPlanets, "planet." + targetPlanet.Name, 10);
 
 }
 
