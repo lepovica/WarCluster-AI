@@ -29,7 +29,7 @@ module.exports.prototype.parseView = function(data) {
 
     }
   }
-  // console.log("this.emperorPlanets", this.emperorPlanets)
+  console.log("this.emperorPlanets", this.emperorPlanets)
 }
 
 module.exports.prototype.rememberEmperor = function(emperor) {

@@ -46,14 +46,7 @@ module.exports = function(name) {
 			var sumOfConfidence = 0.0;
 			for(key in core._memberSets) {
 				var confidence = confidenceMap[key];
-
 				var repValue = core._memberSets[key]._repValue;
-				console.log("confidence : ", confidence);
-				console.log("repValue : ", repValue);
-				console.log(core._memberSets)
-				if (repValue == NaN) {
-					console.log("core", core._memberSets)
-				}
 				sumOfConfidenceMultiplyRepValue += confidence*repValue;
 				sumOfConfidence += confidence;
 			}
