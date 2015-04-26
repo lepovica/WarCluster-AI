@@ -51,7 +51,9 @@ module.exports = function(name) {
 				sumOfConfidence += confidence;
 			}
 			var crispValue = sumOfConfidenceMultiplyRepValue / sumOfConfidence;
-
+			if(isNaN(crispValue)) {
+				crispValue = 0.0;
+			}
 			return crispValue;
 		}
 	}
