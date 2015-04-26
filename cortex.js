@@ -7,7 +7,6 @@ module.exports = function(wai){
   this.suns = {};
   this.planets = {}
   this.targetPlanet = undefined;
-  this.maxDesirability = 0.0;
   this.emperor;
   this.waiPlanets = [];
 
@@ -17,6 +16,8 @@ module.exports = function(wai){
 
 module.exports.prototype.parseView = function(data) {
   var self = this;
+  var maxDesirability = 0.0;
+
   var homePlanet = this.playerData.HomePlanet;
   for (planet in data.Planets) {
     var currentPlanet = data.Planets[planet];
@@ -30,10 +31,10 @@ module.exports.prototype.parseView = function(data) {
       } else if (currentPlanet.Owner === this.emperor.Username) {
         desirability *= 1.1
       }
-      
-      if (self.maxDesirability < desirability) {
+
+      if (maxDesirability < desirability) {
         self.targetPlanet = currentPlanet;
-        self.maxDesirability = desirability;
+        maxDesirability = desirability;
       }
 
       // this.allPlanets.push({
@@ -44,7 +45,7 @@ module.exports.prototype.parseView = function(data) {
     }
   }
 
-	
+
 
   var attackPlanets = this.waiPlanets.map(function(elem) {
     return "planet." + elem.Name;
