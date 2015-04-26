@@ -3,6 +3,7 @@ var wai = require('./wai')
 
 module.exports = function(){
   var self = this;
+  this.wai = new wai();
   this.users = {};
   this.suns = {};
   this.planets = {}
@@ -39,7 +40,8 @@ module.exports.prototype.parseView = function(data) {
   console.log(this.emperorPlanets)
 // module.exports.prototype.sendMission = function(type, source, target, ships, waypoints) {
   //
-  wai.sendMission("Attack", this.waiPlanets, this.emperorPlanets[0].PlanetData, 10)
+  console.log(this.wai)
+  this.wai.sendMission("Attack", this.waiPlanets, this.emperorPlanets[0].PlanetData, 10)
 
 }
 
