@@ -25,9 +25,16 @@ module.exports = function() {
 			var flv = core._varMap[nameOfFLV];
 			flv.fuzzify(crispValue);
 		},
+		_setConfidenceOfConsequentsToZero : function() {
+			for(var i = 0; i < core._fuzzyRules.length; i++) {
+				core._fuzzyRules[i].setConfidenceOfConsequentToZero();
+			}
+		},
 		deFuzzify : function(nameOfFLV) {
 			var confidenceMap = {};
 			var flv = core._varMap[nameOfFLV];
+
+			core._setConfidenceOfConsequentsToZero();
 
 			var rules = core._fuzzyRules;
 			for(var i = 0; i < rules.length; i++) {

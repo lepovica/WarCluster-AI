@@ -41,7 +41,7 @@ module.exports = function(name) {
 				core._memberSets[key].setDOM(core._memberSets[key].calculateDOM(value));
 			}
 		},
-		deFuzzify : function(confidenceMap) {
+		deFuzzify : function(confidenceMap) { //maxAv method
 			var sumOfConfidenceMultiplyRepValue = 0.0;
 			var sumOfConfidence = 0.0;
 			for(key in core._memberSets) {
