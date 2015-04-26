@@ -33,8 +33,8 @@ module.exports.prototype.parseView = function(data) {
 
     }
   }
-  
-	this.emperorPlanets.sort = function (a, b) {
+
+	this.emperorPlanets.sort(function (a, b) {
   	if (!a.desirability) {
   		return -1;
   	}
@@ -42,13 +42,13 @@ module.exports.prototype.parseView = function(data) {
   		return 1;
   	}
   	else {
-  		return a.desirability - b.desirability;	
+  		return b.desirability - a.desirability;	
   	}
-  };
+  });
 
   var attackPlanets = this.waiPlanets.map(function(elem) {
     return "planet." + elem.Name;
-  };
+  });
 
   console.log(this.emperorPlanets);
 
