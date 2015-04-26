@@ -16,8 +16,9 @@ module.exports = function(){
 module.exports.prototype.parseView = function(data) {
   var self = this;
   for (planet in data.Planets) {
-    if (planet.Owner == this.emperor) {
-      var currentPlanet = data.Planets[planet];
+    var currentPlanet = data.Planets[planet];
+    // console.log("this.emperor", this.emperor)
+    if (currentPlanet.Owner == this.emperor) {
       var homePlanet = this.playerData.HomePlanet;
       var distance = Math.sqrt( Math.pow((homePlanet.Position.X - currentPlanet.Position.X), 2) + Math.pow((homePlanet.Position.Y - currentPlanet.Position.Y), 2));
       var desirability = this.attackModule.getCrispValue(distance, data.Planets[planet].Size)/*distance, size*/
@@ -27,7 +28,7 @@ module.exports.prototype.parseView = function(data) {
       }
 
     }
-    // console.log(this.emperorPlanets)
+    console.log("this.emperorPlanets", this.emperorPlanets)
   }
 }
 
