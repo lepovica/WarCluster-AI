@@ -123,6 +123,7 @@ module.exports.prototype.scopeOfView = function(x, y, width, height) {
 
 module.exports.prototype.sendMission = function(type, source, target, ships, waypoints) {
   // console.log("sendMission:", type, source, target, ships, waypoints)
+  console.log(source, target, ships)
   var waypointsPath = waypoints ? JSON.stringify(waypoints) : "[]";
   this.ws.send('{' +
     '"Command": "start_mission",' +
