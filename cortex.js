@@ -6,7 +6,8 @@ module.exports = function(wai){
   this.users = {};
   this.suns = {};
   this.planets = {}
-  this.allPlanets = [];
+  this.targetPlanet = undefined;
+  this.maxDesirability = 0.0;
   this.emperor;
   this.waiPlanets = [];
 
@@ -29,22 +30,20 @@ module.exports.prototype.parseView = function(data) {
       } else if (currentPlanet.Owner === this.emperor.Username) {
         desirability *= 1.1
       }
-      // console.log("desirability", desirability)
-      this.allPlanets.push({
-          desirability: desirability,
-          PlanetData: data.Planets[planet]
-        });
-      console.log(data.Planets[planet].Name +  "   :   " + desirability);1
+      if (self.maxDesirability < desirability) {
+        self.targetPlanet = currentPlanet;
+        self.maxDesirability = desirability;
+      }
+
+      // this.allPlanets.push({
+      //     desirability: desirability,
+      //     PlanetData: data.Planets[planet]
+      //   });
+      // console.log(data.Planets[planet].Name +  "   :   " + desirability);1
     }
   }
 
-	this.allPlanets.sort(function (a, b) {
-  		return b.desirability - a.desirability;
-
-  });
-  this.allPlanets.forEach(function (elem) {
-    console.log("SORTED", elem.desirability)
-  })
+	
 
   var attackPlanets = this.waiPlanets.map(function(elem) {
     return "planet." + elem.Name;
@@ -52,7 +51,7 @@ module.exports.prototype.parseView = function(data) {
 
   // console.log(this.allPlanets);
 
-  this.wai.sendMission("Attack", attackPlanets, "planet." + this.allPlanets[1].PlanetData.Name, 10);
+  this.wai.sendMission("Attack", attackPlanets, "planet." + this.targetPlanet.Name, 10);
 
 }
 
