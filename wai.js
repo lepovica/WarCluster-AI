@@ -76,7 +76,7 @@ module.exports.prototype.parseMessage = function(command) {
 
         break;
       case "state_change":
-        console.log("state_change")
+        // console.log("state_change")
         // some fuzzy module decision making
         break;
       case "request_setup_params":
@@ -133,7 +133,7 @@ module.exports.prototype.scopeOfView = function(x, y, width, height) {
 
 module.exports.prototype.sendMission = function(type, source, target, ships, waypoints) {
   // console.log("sendMission:", type, source, target, ships, waypoints)
-  console.log("sendMission", target)
+  console.log("Wai will destroy >:D ", target)
   var waypointsPath = waypoints ? JSON.stringify(waypoints) : "[]";
   this.ws.send('{' +
     '"Command": "start_mission",' +

@@ -34,7 +34,7 @@ module.exports.prototype.parseView = function(data) {
           desirability: desirability,
           PlanetData: data.Planets[planet]
         });
-      console.log(data.Planets[planet].Name +  "   :   " + desirability);1
+      // console.log(data.Planets[planet].Name +  "   :   " + desirability);1
     }
   }
 
@@ -42,9 +42,6 @@ module.exports.prototype.parseView = function(data) {
   		return b.desirability - a.desirability;
 
   });
-  this.allPlanets.forEach(function (elem) {
-    console.log("SORTED", elem.desirability)
-  })
 
   var attackPlanets = this.waiPlanets.map(function(elem) {
     return "planet." + elem.Name;
