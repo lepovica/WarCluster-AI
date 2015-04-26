@@ -17,11 +17,10 @@ module.exports.prototype.parseView = function(data) {
   var self = this;
   for (planet in data.Planets) {
     if (planet.Owner == this.emperor) {
-      // console.log("planet", data.Planets[planet])
-      var coord = "planet.80_200".split(".")[1].split("_");
+      var currentPlanet = data.Planets[planet];
       var homePlanet = this.playerData.HomePlanet;
-      var distance = Math.sqrt( Math.pow((homePlanet.x - parseInt(coord[0])), 2) + Math.pow((homePlanet.y - parseInt(coord[1])), 2));
-      var desirability = this.attackModule.getCrispValue(data.Planets[planet].Size/*distance, size*/)
+      var distance = Math.sqrt( Math.pow((homePlanet.Position.X - currentPlanet.Position.X), 2) + Math.pow((homePlanet.Position.Y - currentPlanet.Position.Y), 2));
+      var desirability = this.attackModule.getCrispValue(distance, data.Planets[planet].Size)/*distance, size*/
       this.emperorPlanets[planet] = {
         desirability: desirability,
         planet_data: data.Planets[planet]
