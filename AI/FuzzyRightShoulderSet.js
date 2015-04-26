@@ -32,6 +32,11 @@ module.exports = function (name, repValue, leftOffset, peakPoint, rightOffset) {
 		},
 		getName : function() {
 			return core._name;
+		},
+		ORwithDOM : function(value) {
+			if(core._DOM < value) {
+				core.setDOM(value);
+			}
 		}
 	}
 	return core;

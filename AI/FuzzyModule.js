@@ -17,6 +17,7 @@ module.exports = function() {
 			return newVar;
 		},
 		addRule : function(antecedent, consequence) {
+			// console.log("antecedent", antecedent)
 			var newRule = FuzzyRule(antecedent, consequence);
 			core._fuzzyRules.push(newRule);
 			return newRule;
@@ -38,18 +39,21 @@ module.exports = function() {
 
 			var rules = core._fuzzyRules;
 			for(var i = 0; i < rules.length; i++) {
-				rules[i]._con.calculate();
+				rules[i].calculate();
 			}
-			for(key in flv._memberSet) {
+			for(key in flv._memberSets) {
 				for(var j = 0; j < rules.length; j++) {
-					if(rules[j]._con.getName === key) {
-						if ( flv._memberSet[key].getDOM() > rules[j]._con.getDOM()) {
-							flv._memberSet[key].setDOM(rules[j]._con.getDOM());
+					// console.log("rules[j]._con.getName", rules[j]._con.getName(), key)
+					if(rules[j]._con.getName() === key) {
+						if ( flv._memberSets[key].getDOM() > rules[j]._con.getDOM()) {
+							flv._memberSets[key].setDOM(rules[j]._con.getDOM());
 						}
-						confidenceMap[key] = flv._memberSet[key].getDOM()
+						confidenceMap[key] = flv._memberSets[key].getDOM()
 					}
 				}
 			}
+			console.log("confidenceMap -------", confidenceMap)
+
 			return flv.deFuzzify(confidenceMap);
 		}
 	}

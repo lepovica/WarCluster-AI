@@ -45,7 +45,7 @@ module.exports = function(name) {
 			var sumOfConfidenceMultiplyRepValue = 0.0;
 			var sumOfConfidence = 0.0;
 			for(key in core._memberSets) {
-				var confidence = confidenceMap[key].getDOM();
+				var confidence = confidenceMap[key];
 				var repValue = core._memberSets[key]._repValue;
 				sumOfConfidenceMultiplyRepValue += confidence*repValue;
 				sumOfConfidence += repValue;

@@ -17,7 +17,7 @@ module.exports.prototype.prepare = function(username, twitterId, tokens) {
   this.username = username;
   this.twitterId = twitterId;
   this.cortex = new cortex();
-  console.log("Cortext", this.cortex)
+  // console.log("Cortext", this.cortex)
   var msg = {
     "Command": "login",
     "Username": username,
@@ -27,14 +27,14 @@ module.exports.prototype.prepare = function(username, twitterId, tokens) {
   };
   this.getEmperor(ok(console.error.bind(console), function(data) {
     var emperor = JSON.parse(data)[0];
-    console.log(self.cortex)
+    // console.log(self.cortex)
     // this.cortex.rememberEmperor(emperor);
   }));
 
   this.getLeaderboardRaces(ok(console.error.bind(console), function(data) {
     var races = JSON.parse(data);
   }));
-  console.log("config", this.config)
+  // console.log("config", this.config)
   this.ws = new WebSocket(this.config.socketUrl);
   this.ws.on("open", function() {
     console.log("websocket open")
@@ -64,6 +64,7 @@ module.exports.prototype.parseMessage = function(command) {
         pd.Position = data.Position;
         pd.Race = data.RaceID;
         pd.HomePlanet = data.HomePlanet;
+        this.cortex.setPlayerData(pd)
         // some fuzzy module decision making passing playerData
           break;
       case "scope_of_view_result":
