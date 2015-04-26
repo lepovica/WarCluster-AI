@@ -20,8 +20,6 @@ module.exports.prototype.parseView = function(data) {
     if (currentPlanet.Owner === this.emperor.Username) {
       var homePlanet = this.playerData.HomePlanet;
       var distance = Math.sqrt( Math.pow((homePlanet.Position.X - currentPlanet.Position.X), 2) + Math.pow((homePlanet.Position.Y - currentPlanet.Position.Y), 2));
-      // console.log("distance", parseInt(distance))
-      // console.log("Size", data.Planets[planet].Size)
       var desirability = this.attackModule.getCrispValue(parseInt(distance), data.Planets[planet].Size)/*distance, size*/
       // console.log("desirability", desirability)
       this.emperorPlanets[planet] = {
