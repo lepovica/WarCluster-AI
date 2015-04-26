@@ -43,12 +43,12 @@ module.exports = function() {
 			}
 			for(key in flv._memberSets) {
 				for(var j = 0; j < rules.length; j++) {
-					// console.log("rules[j]._con.getName", rules[j]._con.getName(), key)
-					if(rules[j]._con.getName() === key) {
-						if ( flv._memberSets[key].getDOM() > rules[j]._con.getDOM()) {
-							flv._memberSets[key].setDOM(rules[j]._con.getDOM());
-						}
-						confidenceMap[key] = flv._memberSets[key].getDOM()
+					if( (rules[j]._con.getName() === key)) {
+						// if ( flv._memberSets[key].getDOM() > rules[j]._con.getDOM()) {
+						// 	flv._memberSets[key].setDOM(rules[j]._con.getDOM());
+						// }
+						// confidenceMap[key] = flv._memberSets[key].getDOM()
+						confidenceMap[key] = rules[j]._con.getDOM();
 					}
 				}
 			}
