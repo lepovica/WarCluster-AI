@@ -7,7 +7,7 @@ module.exports = function() {
   var self = this;
   this.attackModule = new FuzzyModule();
   this.distanceFLV = this.attackModule.createFLV("distance")
-  this.close_to_target = this.distanceFLV.addLeftShoulderSet("close", 0, 20000, 40000);
+  this.close_to_target = this.distanceFLV.addLeftShoulderSet("close", 0, 1, 40000);
   this.average_to_target = this.distanceFLV.addTriangleSet("average", 20000, 40000, 60000);
   this.far_to_target = this.distanceFLV.addRightShoulderSet("far", 40000, 60000, 400000);
 

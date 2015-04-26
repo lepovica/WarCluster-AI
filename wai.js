@@ -117,17 +117,23 @@ module.exports.prototype.parseMessage = function(command) {
 }
 
 module.exports.prototype.scopeOfView = function(x, y, width, height) {
-  //console.log("scopeOfView", x, y, width, height)
+  var self = this;
+  // console.log("scopeOfView", x, y, width, height)
+
   this.ws.send('{' +
     '"Command": "scope_of_view",' +
     '"Position": {"x": '+x+', "y": '+y+'},' +
     '"Resolution": ['+width+', '+height+']' +
   '}');
+  setTimeout(function () {
+    self.scopeOfView(x, y, width, height)
+    console.log("height", height)
+  }, 7000);
 }
 
 module.exports.prototype.sendMission = function(type, source, target, ships, waypoints) {
   // console.log("sendMission:", type, source, target, ships, waypoints)
-  console.log(source, target, ships)
+  console.log("sendMission", target)
   var waypointsPath = waypoints ? JSON.stringify(waypoints) : "[]";
   this.ws.send('{' +
     '"Command": "start_mission",' +
