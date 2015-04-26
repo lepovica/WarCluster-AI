@@ -33,13 +33,22 @@ module.exports.prototype.parseView = function(data) {
 
     }
   }
-  this.emperorPlanets.sort(function (a, b) {
-    return a.desirability - b.desirability
-  })
+  
+	this.emperorPlanets.sort = function (a, b) {
+  	if (!a.desirability) {
+  		return -1;
+  	}
+  	else if(!b.desirability) {
+  		return 1;
+  	}
+  	else {
+  		return a.desirability - b.desirability;	
+  	}
+  };
 
   var attackPlanets = this.waiPlanets.map(function(elem) {
     return "planet." + elem.Name;
-  })
+  };
 
   console.log(this.emperorPlanets);
 
