@@ -29,6 +29,9 @@ module.exports.prototype.parseView = function(data) {
 
     }
   }
+  this.emperorPlanets.sort(function (a, b) {
+    return a.desirability - b.desirability
+  })
   console.log("this.emperorPlanets", this.emperorPlanets)
 }
 
