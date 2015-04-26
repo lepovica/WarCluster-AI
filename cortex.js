@@ -37,8 +37,6 @@ module.exports.prototype.parseView = function(data) {
         targetPlanet = currentPlanet;
         maxDesirability = desirability;
       }
-      // console.log("desirability", desirability)
-      // console.log(data.Planets[planet].Name +  "   :   " + desirability);1
     }
   }
 
@@ -48,7 +46,7 @@ module.exports.prototype.parseView = function(data) {
     return "planet." + elem.Name;
   });
 
-  // console.log(targetPlanet.Name + "  :  " + maxDesirability);
+  console.log(targetPlanet.Name + "  :  " + targetPlanet.Owner + "  :  " + maxDesirability);
 
   this.wai.sendMission("Attack", attackPlanets, "planet." + targetPlanet.Name, 10);
 
