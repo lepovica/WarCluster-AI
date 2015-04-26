@@ -126,8 +126,7 @@ module.exports.prototype.scopeOfView = function(x, y, width, height) {
     '"Resolution": ['+width+', '+height+']' +
   '}');
   setTimeout(function () {
-    self.scopeOfView(x, y, width, height)
-    console.log("height", height)
+    self.scopeOfView(x, y, width, height);
   }, 7000);
 }
 

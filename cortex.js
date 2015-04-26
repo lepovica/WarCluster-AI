@@ -30,6 +30,7 @@ module.exports.prototype.parseView = function(data) {
       } else if (currentPlanet.Owner === this.emperor.Username) {
         desirability *= 1.1
       }
+      
       if (self.maxDesirability < desirability) {
         self.targetPlanet = currentPlanet;
         self.maxDesirability = desirability;
@@ -49,7 +50,7 @@ module.exports.prototype.parseView = function(data) {
     return "planet." + elem.Name;
   });
 
-  // console.log(this.allPlanets);
+  console.log(this.targetPlanet.Name + "  :  " + this.maxDesirability);
 
   this.wai.sendMission("Attack", attackPlanets, "planet." + this.targetPlanet.Name, 10);
 
