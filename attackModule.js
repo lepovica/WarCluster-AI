@@ -12,9 +12,9 @@ module.exports = function() {
   this.far_to_target = this.distanceFLV.addRightShoulderSet("far", 40000, 60000, 400000);
 
   this.sizeFLV = this.attackModule.createFLV("size");
-  this.small_target = this.sizeFLV.addLeftShoulderSet("small", 1, 3, 5);
-  this.medium_target = this.sizeFLV.addTriangleSet("medium",3 ,5, 6);
-  this.big_target = this.sizeFLV.addRightShoulderSet("big", 5, 7, 10);
+  this.small_target = this.sizeFLV.addLeftShoulderSet("small", 1, 3, 6);
+  this.medium_target = this.sizeFLV.addTriangleSet("medium",3 ,6, 8);
+  this.big_target = this.sizeFLV.addRightShoulderSet("big", 8, 9, 10);
 
   this.desirabilityFLV = this.attackModule.createFLV("desirability");
   this.undesirable = this.desirabilityFLV.addLeftShoulderSet("undesirable", 0, 30, 50);

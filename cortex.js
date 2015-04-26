@@ -1,9 +1,9 @@
 var attackModule = require('./attackModule');
 var wai = require('./wai')
 
-module.exports = function(){
+module.exports = function(wai){
   var self = this;
-  this.wai = new wai();
+  this.wai = wai;
   this.users = {};
   this.suns = {};
   this.planets = {}
@@ -35,13 +35,16 @@ module.exports.prototype.parseView = function(data) {
     }
   }
   this.emperorPlanets.sort(function (a, b) {
-    return b.desirability - a.desirability
+    return a.desirability - b.desirability
   })
-  console.log(this.emperorPlanets)
-// module.exports.prototype.sendMission = function(type, source, target, ships, waypoints) {
-  //
-  console.log(this.wai)
-  this.wai.sendMission("Attack", this.waiPlanets, this.emperorPlanets[0].PlanetData, 10)
+
+  var attackPlanets = this.waiPlanets.map(function(elem) {
+    return "planet." + elem.Name;
+  })
+
+  console.log(this.emperorPlanets);
+
+  this.wai.sendMission("Attack", attackPlanets, "planet." + this.emperorPlanets[0].PlanetData.Name, 10);
 
 }
 
