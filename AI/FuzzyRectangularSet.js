@@ -1,4 +1,4 @@
-module.exports = function(name, repValue,  leftOffset, peakPoint, rightOffset) {
+module.exports = function(name, leftOffset, peakPoint, rightOffset) {
 	var core = {
 		_repValue : peakPoint, // TODO : should check this !!!
 		_name : name,
