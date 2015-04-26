@@ -11,8 +11,8 @@ module.exports = function(name) {
 		adjustRanges : function(left, right) {
 			if ( left < core._minRange) {core._minRange = left;}
 			if ( right < core._maxRange) {core._maxRange = right};
-		}
-		addTriangleSet : function(setName, leftBound, peakPoint, rightBound) {
+		},
+		addTriangleSet: function(setName, leftBound, peakPoint, rightBound) {
 			var newSet = FuzzyTriangleSet(peakPoint - leftBound, peakPoint, peakPoint + rightBound);
 			core._memberSets[setName] = newSet;
 			core.adjustRanges(leftBound, rightBound);
@@ -53,5 +53,6 @@ module.exports = function(name) {
 			var crispValue = sumOfConfidenceMultiplyRepValue / sumOfConfidence;
 			return crispValue;
 		}
+	}
 	return core;
 }

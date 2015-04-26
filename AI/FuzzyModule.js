@@ -39,7 +39,7 @@ module.exports = function() {
 						if ( flv._memberSet[key].getDOM() > rules[j]._con.getDOM()) {
 							flv._memberSet[key].setDOM(rules[j]._con.getDOM());
 						}
-						confidenceMap.[key] = flv._memberSet[key].getDOM()
+						confidenceMap[key] = flv._memberSet[key].getDOM()
 					}
 				}
 			}
