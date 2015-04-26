@@ -1,7 +1,10 @@
+'use strict'
+
 var WebSocket = require("ws");
 var request = require("request");
 var PlayerData = require("./PlayerData.js");
-var ok = require("okay")
+var cortex = require("./cortex.js");
+var ok = require("okay");
 
 module.exports = function(config){
   this.context = {};
@@ -13,7 +16,8 @@ module.exports.prototype.prepare = function(username, twitterId, tokens) {
 
   this.username = username;
   this.twitterId = twitterId;
-
+  this.cortex = new cortex();
+  console.log("Cortext", this.cortex)
   var msg = {
     "Command": "login",
     "Username": username,
@@ -23,12 +27,14 @@ module.exports.prototype.prepare = function(username, twitterId, tokens) {
   };
   this.getEmperor(ok(console.error.bind(console), function(data) {
     var emperor = JSON.parse(data)[0];
+    console.log(self.cortex)
+    // this.cortex.rememberEmperor(emperor);
   }));
 
   this.getLeaderboardRaces(ok(console.error.bind(console), function(data) {
     var races = JSON.parse(data);
   }));
-
+  console.log("config", this.config)
   this.ws = new WebSocket(this.config.socketUrl);
   this.ws.on("open", function() {
     console.log("websocket open")
@@ -38,6 +44,9 @@ module.exports.prototype.prepare = function(username, twitterId, tokens) {
     // console.log("websocket  message", message)
     self.parseMessage(message);
   });
+  this.ws.on("error", function(err){
+    console.error(arguments)
+  })
 }
 
 module.exports.prototype.parseMessage = function(command) {
@@ -56,30 +65,30 @@ module.exports.prototype.parseMessage = function(command) {
         pd.Race = data.RaceID;
         pd.HomePlanet = data.HomePlanet;
         // some fuzzy module decision making passing playerData
-      break;
+          break;
       case "scope_of_view_result":
         console.log("scope_of_view_result")
-
+        this.cortex.parseView(data)
         // some fuzzy module decision making
-      break;
+        break;
       case "state_change":
         console.log("state_change")
         // some fuzzy module decision making
-      break;
+        break;
       case "request_setup_params":
         console.log("request_setup_params")
         // decide
         this.setupParameters(5, 0);
-      break;
+        break;
       case "send_missions":
         console.log("send_missions")
         // console.log("send_missions:", data)
         // some fuzzy module decision making
-      break;
+        break;
       case "send_mission_failed":
         console.log("send_mission_failed")
         // some fuzzy module decision making
-      break;
+        break;
       case "server_params":
         console.log("Wai should understand server_params")
         this.context.serverParams = {
@@ -91,11 +100,11 @@ module.exports.prototype.parseMessage = function(command) {
         this.scopeOfView(0, 0, 145907, 145907)
         break;
       case "error":
-          console.error(data.Message)
+        console.error(data.Message)
         break;
       case "owner_change":
         console.log("Wai has lost a planet ;C")
-      break;
+        break;
       default:
         console.log("default", data);
     }
