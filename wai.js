@@ -16,7 +16,7 @@ module.exports.prototype.prepare = function(username, twitterId, tokens) {
 
   this.username = username;
   this.twitterId = twitterId;
-  this.cortex = new cortex();
+  this.cortex = new cortex(this);
   // console.log("Cortext", this.cortex)
   var msg = {
     "Command": "login",
@@ -123,7 +123,9 @@ module.exports.prototype.scopeOfView = function(x, y, width, height) {
 
 module.exports.prototype.sendMission = function(type, source, target, ships, waypoints) {
   // console.log("sendMission:", type, source, target, ships, waypoints)
-  console.log(source, target, ships)
+  console.log("source", source)
+  console.log("target", target)
+  console.log("ships", ships)
   var waypointsPath = waypoints ? JSON.stringify(waypoints) : "[]";
   this.ws.send('{' +
     '"Command": "start_mission",' +
